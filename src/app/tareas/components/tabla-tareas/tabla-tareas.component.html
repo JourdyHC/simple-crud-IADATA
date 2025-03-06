@@ -1,0 +1,78 @@
+<mat-card appearance="outlined">
+    <h1 class="text-center">Lista de Tareas</h1>
+    <hr>
+    <div class="col-12">
+        <button mat-flat-button class="offset-1 col-4" routerLink="./new">Agregar desde Form</button>
+        <button mat-flat-button class="offset-2 col-4" (click)="abrirDialog()">Agregar desde Dialog</button>
+    </div>
+    <br>
+    <mat-card-content>
+        <div class="mat-elevation-z8">
+            <div style="overflow-x: auto;">
+                <table mat-table [dataSource]="dataSource">
+    
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef> No. </th>
+                        <td mat-cell *matCellDef="let element; let idx = index"> {{idx+1}} </td>
+                    </ng-container>
+    
+                    <!-- Columna Título -->
+                    <ng-container matColumnDef="titulo">
+                        <th mat-header-cell *matHeaderCellDef> Título </th>
+                        <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+                    </ng-container>
+    
+                    <!-- Columna Descripcion -->
+                    <ng-container matColumnDef="descripcion">
+                        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+                        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+                    </ng-container>
+    
+                    <!-- Columna Horas Estimadas -->
+                    <ng-container matColumnDef="horasEstimadas">
+                        <th mat-header-cell *matHeaderCellDef> Horas Estimadas </th>
+                        <td mat-cell *matCellDef="let element"> {{element.horasEstimadas>1?element.horasEstimadas+' horas':element.horasEstimadas+' hora'}} </td>
+                    </ng-container>
+    
+                    <!-- Columna Fecha Límite -->
+                    <ng-container matColumnDef="fechaLimite">
+                        <th mat-header-cell *matHeaderCellDef> Fecha Límite </th>
+                        <td mat-cell *matCellDef="let element"> {{element.fechaLimite | date}} </td>
+                    </ng-container>
+    
+                    <!-- Columna Estado -->
+                    <ng-container matColumnDef="estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+                    </ng-container>
+    
+                    <!-- Columna Acciones -->
+                    <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                                <button mat-icon-button [routerLink]="['./edit', element.id]">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button (click)="abrirDialog()">
+                                    <mat-icon>edit_square</mat-icon>
+                                </button>
+                                <button mat-icon-button>
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>
