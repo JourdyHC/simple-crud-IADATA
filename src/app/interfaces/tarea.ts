@@ -1,9 +1,9 @@
 export interface Tarea {
-    id: number;
+    id?: number;
     titulo: string;
     descripcion: string;
     horasEstimadas: string;
-    fechaLimite: Date;
+    fechaLimite: Date | null;
     estado: "Pendiente" | "En progreso" | "Completada"
   }
   
