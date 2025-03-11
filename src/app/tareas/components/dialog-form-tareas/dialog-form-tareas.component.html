@@ -1,29 +1,29 @@
 <h2 mat-dialog-title>Tarea</h2>
 <mat-dialog-content>
-    <div>
+    <div [formGroup] = "formTareas">
         <mat-form-field class="col-12">
             <mat-label>Título</mat-label>
-            <input matInput>
+            <input matInput formControlName="titulo">
         </mat-form-field>
         <mat-form-field class="col-12">
             <mat-label>Descripción</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput formControlName="descripcion"></textarea>
         </mat-form-field>
         <mat-form-field class="col-12">
             <mat-label>Horas estimadas</mat-label>
-            <input matInput type="number">
+            <input matInput type="number" formControlName="horasEstimadas">
             <span matTextSuffix>hora(s)</span>
         </mat-form-field>
         <mat-form-field class="col-12">
             <mat-label>Fecha límite</mat-label>
-            <input matInput [matDatepicker]="picker">
+            <input matInput [matDatepicker]="picker" formControlName="fechaLimite">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field class="col-12">
             <mat-label>Estado</mat-label>
-            <mat-select value="Pendiente">
+            <mat-select formControlName="estado">
                 <mat-option value="Pendiente">Pendiente</mat-option>
                 <mat-option value="En progreso">En progreso</mat-option>
                 <mat-option value="Completada">Completada</mat-option>
@@ -33,5 +33,9 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button mat-button cdkFocusInitial>Agregar</button>
+    @if (true) {
+        <button mat-button cdkFocusInitial class="offset-2 col-5" (click)="actualizarTarea()" [disabled]="formTareas.invalid">Actualizar</button>
+    }@else{
+        <button mat-button cdkFocusInitial class="offset-2 col-5" (click)="crearTarea()" [disabled]="formTareas.invalid">Crear tarea</button>
+    }
 </mat-dialog-actions>

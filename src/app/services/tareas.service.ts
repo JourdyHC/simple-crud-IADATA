@@ -14,7 +14,7 @@ export class TareasService extends GenericService<Tarea>{
   private messageChange: Subject<string>=new Subject<string>;
 
   constructor( protected override http: HttpClient) { 
-     super(http, `${environment.HOST}/tarea`)
+     super(http, `${environment.HOST}/tareas`)
   }
 
   setTareaChange(data:Tarea[]){

@@ -6,6 +6,7 @@
             <mat-form-field class="col-12">
                 <mat-label>Título</mat-label>
                 <input matInput formControlName="titulo">
+                <mat-error>El campo es requerido</mat-error>
             </mat-form-field>
             <mat-form-field class="col-12">
                 <mat-label>Descripción</mat-label>
@@ -33,7 +34,11 @@
             </mat-form-field>
             <div class="col-12">
                 <button mat-flat-button class="col-5" routerLink="/tareas">Cancelar</button>
-                <button mat-flat-button class="offset-2 col-5" (click)="crearTarea()">Crear Tarea</button>
+                @if (id) {
+                    <button mat-flat-button class="offset-2 col-5" (click)="actualizarTarea()" [disabled]="formTareas.invalid">Actualizar</button>
+                }@else{
+                    <button mat-flat-button class="offset-2 col-5" (click)="crearTarea()" [disabled]="formTareas.invalid">Crear tarea</button>
+                }                 
             </div>
         </div>
     </mat-card-content>
