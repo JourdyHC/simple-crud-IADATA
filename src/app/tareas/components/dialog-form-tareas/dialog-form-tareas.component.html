@@ -33,7 +33,7 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Cancelar</button>
-    @if (true) {
+    @if (data) {
         <button mat-button cdkFocusInitial class="offset-2 col-5" (click)="actualizarTarea()" [disabled]="formTareas.invalid">Actualizar</button>
     }@else{
         <button mat-button cdkFocusInitial class="offset-2 col-5" (click)="crearTarea()" [disabled]="formTareas.invalid">Crear tarea</button>

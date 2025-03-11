@@ -53,8 +53,7 @@ export class TablaTareasComponent {
     this.dataSource = new MatTableDataSource(tareas);// Llenando los datos
     this.dataSource.paginator = this.paginator;
   }
-  
-  //DELETE
+    
   eliminarTarea(id:number){
     this.alertService.confirmAction(()=>{
       this.tareasService.delete(id).subscribe(data=>{
@@ -69,12 +68,12 @@ export class TablaTareasComponent {
   //   this.dataSource.paginator = this.paginator;
   // }
 
-  abrirDialog(): void {
+  abrirDialog(tarea?: Tarea): void {
     const dialogRef = this.dialog.open(
       DialogFormTareasComponent, 
-      // {
-      //   data: null,
-      // }
+      {
+        data: tarea,
+      }
     );
   }
 }

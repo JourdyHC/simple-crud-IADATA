@@ -55,7 +55,7 @@
                                 <button mat-icon-button [routerLink]="['./edit', element.id]">
                                     <mat-icon>edit</mat-icon>
                                 </button>
-                                <button mat-icon-button (click)="abrirDialog()">
+                                <button mat-icon-button (click)="abrirDialog(element)">
                                     <mat-icon>edit_square</mat-icon>
                                 </button>
                                 <button mat-icon-button (click)="eliminarTarea(element.id)">

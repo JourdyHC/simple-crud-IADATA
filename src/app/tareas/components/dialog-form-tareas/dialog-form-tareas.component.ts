@@ -46,6 +46,9 @@ export class DialogFormTareasComponent {
 
   ngOnInit(){
     this.inicializarFormulario();
+    if(this.data){
+      this.llenarFormulario(this.data);
+    }
   }
 
   onNoClick(): void {
@@ -84,7 +87,11 @@ export class DialogFormTareasComponent {
     }
 
     this.tareasService.save(tarea).subscribe(data => {
-      this.alertService.success();
+      this.tareasService.findAll().subscribe(data=>{
+        this.tareasService.setTareaChange(data);
+        this.alertService.success();
+        this.dialogRef.close();
+      });
     });
   }
 
@@ -99,8 +106,12 @@ export class DialogFormTareasComponent {
       estado: this.formTareas.value.estado
     }
 
-    // this.tareasService.update(this.id, tarea).subscribe(data => {
-    //   this.alertService.success();
-    // });
+    this.tareasService.update(this.data.id!, tarea).subscribe(data => {
+      this.tareasService.findAll().subscribe(data=>{
+        this.tareasService.setTareaChange(data);
+        this.alertService.success();
+        this.dialogRef.close();
+      });
+    });
   }
 }
